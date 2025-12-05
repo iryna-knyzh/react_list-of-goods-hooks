@@ -19,10 +19,11 @@ export const goodsFromServer = [
 enum SortType {
   SORT_FIELD_ALPHABETICALLY = 'alphabetically',
   SORT_FIELD_LENGTH = 'length',
+  NONE = '',
 }
 
 interface FilterParams {
-  sortField: string;
+  sortField: SortType | '';
   sortOrderReverse: boolean;
 }
 
@@ -55,7 +56,7 @@ function getPreparedGoods(
 }
 
 export const App: React.FC = () => {
-  const [sortField, setSortField] = useState('');
+  const [sortField, setSortField] = useState(SortType.NONE);
   const [sortOrderReverse, setSortOrderReverse] = useState(false);
   const visibleGoods = getPreparedGoods(goodsFromServer, {
     sortField,
